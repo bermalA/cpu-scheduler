@@ -185,7 +185,7 @@ void simulateExecution(CpuQueue *cpu1_queue, CpuQueue *cpu2_queue_high, CpuQueue
 {
     Process current_process;
 
-    printf("CPU-1 que1(priority-0) (FCFS) → ");
+    printf("CPU-1 queue(priority-0) (FCFS) → ");
     while (cpu1_queue->front <= cpu1_queue->back)
     {
         current_process = cpu1_queue->queue[cpu1_queue->front];
@@ -195,7 +195,7 @@ void simulateExecution(CpuQueue *cpu1_queue, CpuQueue *cpu2_queue_high, CpuQueue
     }
     printf("\n");
 
-    printf("CPU-2 que2(priority-1) (SJF) → ");
+    printf("CPU-2 queue_high(priority-1) (SJF) → ");
     while (cpu2_queue_high->front <= cpu2_queue_high->back)
     {
         current_process = cpu2_queue_high->queue[cpu2_queue_high->front];
@@ -205,7 +205,7 @@ void simulateExecution(CpuQueue *cpu1_queue, CpuQueue *cpu2_queue_high, CpuQueue
     }
     printf("\n");
 
-    printf("CPU-2 que3(priority-2) (RR-q8) → ");
+    printf("CPU-2 queue_medium(priority-2) (RR-q8) → ");
     while (cpu2_queue_medium->front <= cpu2_queue_medium->back)
     {
         current_process = cpu2_queue_medium->queue[cpu2_queue_medium->front];
@@ -215,7 +215,7 @@ void simulateExecution(CpuQueue *cpu1_queue, CpuQueue *cpu2_queue_high, CpuQueue
     }
     printf("\n");
 
-    printf("CPU-2 que4(priority-3) (RR-q16) → ");
+    printf("CPU-2 queue_low(priority-3) (RR-q16) → ");
     while (cpu2_queue_low->front <= cpu2_queue_low->back)
     {
         current_process = cpu2_queue_low->queue[cpu2_queue_low->front];
@@ -294,7 +294,7 @@ void write_to_output(FILE *output_file, const char *message)
 int main()
 {
     Process processes[MAX_PROCESS];
-    int process_count = read_process("in.txt", processes);
+    int process_count = read_process("input.txt", processes);
 
     if (process_count == 0)
     {
@@ -325,14 +325,10 @@ int main()
     {
         Process *process = &processes[i];
         fprintf(output_file, "Process %s is queued to be assigned to CPU-1.\n", process->name);
-        // Example: enqueueProcess(process, &cpu1_queue, &cpu2_queue_high, &cpu2_queue_medium, &cpu2_queue_low);
     }
 
-    // Placeholder messages, replace with actual logic to simulate execution
     fprintf(output_file, "Simulation of process execution begins.\n");
-    // Example: simulateExecution(&cpu1_queue, &cpu2_queue_high, &cpu2_queue_medium, &cpu2_queue_low, output_file);
 
-    // Placeholder messages, replace with actual logic to write completion messages
     fprintf(output_file, "All processes completed and terminated.\n");
 
     simulateExecution(&cpu1_queue, &cpu2_queue_high, &cpu2_queue_medium, &cpu2_queue_low);
