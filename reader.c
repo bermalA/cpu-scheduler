@@ -324,7 +324,7 @@ int main()
     for (int i = 0; i < process_count; i++)
     {
         Process *process = &processes[i];
-        fprintf(output_file, "Process %s is queued to be assigned to CPU-1.\n", process->name);
+        fprintf(output_file, "Process %s is queued to be assigned to CPU-%d.\n", process->name, process->priority < 2 ? 1 : 2);
     }
 
     fprintf(output_file, "Simulation of process execution begins.\n");
